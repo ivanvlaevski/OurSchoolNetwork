@@ -29,7 +29,7 @@ app.Login = (function () {
             $loginUsername = $('#loginUsername');
             $loginPassword = $('#loginPassword');
 
-            if (!isFacebookLogin) {
+          /*  if (!isFacebookLogin) {
                 $('#loginWithFacebook').addClass('disabled');
                 console.log('Facebook App ID and/or Redirect URI not set. You cannot use Facebook login.');
             }
@@ -44,7 +44,7 @@ app.Login = (function () {
             if (!isAdfsLogin) {
                 $('#loginWithADSF').addClass('disabled');
                 console.log('ADFS Realm and/or Endpoint not set. You cannot use ADFS login.');
-            }
+            }*/
             if (!isAnalytics) {
                 console.log('EQATEC product key is not set. You cannot use EQATEC Analytics service.');
             }
@@ -72,7 +72,7 @@ app.Login = (function () {
                 return app.Users.load();
             })
             .then(function () {
-
+                app.GeoLocationService.startWatch();
                 app.mobileApp.navigate('views/activitiesView.html');
             })
             .then(null,

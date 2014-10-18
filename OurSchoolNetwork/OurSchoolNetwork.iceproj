@@ -33,8 +33,10 @@
     <Content Include="scripts\app\analytics-monitor.js" />
     <Content Include="scripts\app\app.js" />
     <Content Include="scripts\app\comments.js" />
+    <Content Include="scripts\app\GeoLocationService.js" />
     <Content Include="scripts\app\identity-provider.js" />
     <Content Include="scripts\app\login.js" />
+    <Content Include="scripts\app\schools.js" />
     <Content Include="scripts\app\settings.js" />
     <Content Include="scripts\app\signup.js" />
     <Content Include="scripts\app\users.js" />
