@@ -76,7 +76,23 @@ app.Activities = (function () {
             },
             transport: {
                 // Required by Backend Services
-                typeName: 'Activities'
+                //typeName: 'Activities'
+                read: {
+                    url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
+                    type: 'GET',
+                    beforeSend: function (req) {
+                        //req.setRequestHeader('Authorization', "Bearer " + appSettings.everlive.apiKey);
+                        req.setRequestHeader('X-Everlive-Filter', JSON.stringify({
+                            "Location": {
+                                "$nearSphere": {
+                                    "longitude": appSettings.currentLocation.pos.coords.latitude,
+                                    "latitude": appSettings.currentLocation.pos.coords.longitude
+                                },
+                                "$maxDistanceInKilometers": 1
+                            }
+                        }));
+                    }
+                }
             },
             change: function (e) {
 

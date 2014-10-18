@@ -44,15 +44,18 @@ app.Login = (function () {
             if (!isAdfsLogin) {
                 $('#loginWithADSF').addClass('disabled');
                 console.log('ADFS Realm and/or Endpoint not set. You cannot use ADFS login.');
-            }*/
+            }
             if (!isAnalytics) {
                 console.log('EQATEC product key is not set. You cannot use EQATEC Analytics service.');
-            }
+            };*/
+
+            
         };
 
         var show = function () {
             $loginUsername.val('');
             $loginPassword.val('');
+            
         };
 
         // Authenticate to use Backend Services as a particular user
@@ -60,6 +63,8 @@ app.Login = (function () {
 
             var username = $loginUsername.val();
             var password = $loginPassword.val();
+
+            
 
             // Authenticate using the username and password
             app.everlive.Users.login(username, password)
@@ -72,8 +77,9 @@ app.Login = (function () {
                 return app.Users.load();
             })
             .then(function () {
-                app.GeoLocationService.startWatch();
-                app.mobileApp.navigate('views/activitiesView.html');
+                app.GeoLocationService.startWatch(function () {
+                    app.mobileApp.navigate('views/activitiesView.html');
+                });
             })
             .then(null,
                   function (err) {

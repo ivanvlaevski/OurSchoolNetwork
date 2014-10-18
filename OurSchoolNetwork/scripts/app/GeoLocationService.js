@@ -7,10 +7,11 @@ var app = app || {};
 app.GeoLocationService = (function () {
     'use strict';
 
-
+    var _callBack = null;
 
     return {
-        startWatch: function () {
+        startWatch: function (callBack) {
+            _callBack = callBack;
             if (appSettings.watchId != null) {
                 navigator.geolocation.clearWatch(appSettings.watchId);
             };
@@ -22,8 +23,12 @@ app.GeoLocationService = (function () {
             }, options);
         },
             
-        onSuccess : function (a,position) {
+        onSuccess: function (a, position) {            
             appSettings.currentLocation = { pos: position, error: null };// new Everlive.GeoPoint(position.coords.latitude,positon.coords.longitude);
+            if (_callBack) {
+                _callBack();
+                _callBack = null;
+            }
         },
         
         onError: function (a,error) {
