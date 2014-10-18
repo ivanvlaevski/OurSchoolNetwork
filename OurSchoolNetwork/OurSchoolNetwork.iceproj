@@ -65,6 +65,7 @@
     <Content Include="views\activityView.html" />
     <Content Include="views\addActivityView.html" />
     <Content Include="views\addCommentView.html" />
+    <Content Include="views\mainView.html" />
     <Content Include="views\noApiKey.html" />
     <Content Include="views\signupView.html" />
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />

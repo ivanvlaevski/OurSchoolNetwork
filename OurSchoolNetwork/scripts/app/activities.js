@@ -30,18 +30,40 @@ app.Activities = (function () {
                     field: 'UserId',
                     defaultValue: null
                 },
+                ShowInClassOnly: {
+                    field: 'ShowInClassOnly',
+                    defaultValue: true
+                },
+                Location: {
+                    field: 'Location'
+                },
                 Likes: {
-                    field: 'Likes',
-                    defaultValue: []
+                    field: 'Likes'
+                },
+                NotLikes: {
+                    field: 'NotLikes'
+                },
+                DeleteRequests: {
+                    field: 'DeleteRequests'
                 }
             },
             CreatedAtFormatted: function () {
-
                 return app.helper.formatDate(this.get('CreatedAt'));
             },
             PictureUrl: function () {
-
                 return app.helper.resolvePictureUrl(this.get('Picture'));
+            },
+            CountLikes: function() {
+                var likes = this.get('Likes');
+                return (likes === undefined ? 0 : likes.length);
+            },
+            CountNotLikes: function() {
+                var notlikes = this.get('NotLikes');
+                return (notlikes === undefined ? 0 : notlikes.length);
+            },
+            CountDeleteRequests: function () {
+                var deleterequests = this.get('DeleteRequests');
+                return (deleterequests=== undefined ? '' : (deleterequests.length>5?'ilv-hide':''));
             },
             User: function () {
 
@@ -75,24 +97,50 @@ app.Activities = (function () {
                 model: activityModel
             },
             transport: {
-                // Required by Backend Services
-                //typeName: 'Activities'
-                read: {
-                    url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
-                    type: 'GET',
-                    beforeSend: function (req) {
-                        //req.setRequestHeader('Authorization', "Bearer " + appSettings.everlive.apiKey);
-                        req.setRequestHeader('X-Everlive-Filter', JSON.stringify({
-                            "Location": {
-                                "$nearSphere": {
-                                    "longitude": appSettings.currentLocation.pos.coords.latitude,
-                                    "latitude": appSettings.currentLocation.pos.coords.longitude
-                                },
-                                "$maxDistanceInKilometers": 1
+                read: function (options) {
+                    if (appSettings.currentLocation !== null) {
+                        console.log('use location >> ' + appSettings.currentLocation.pos[0].coords.latitude + '-' + appSettings.currentLocation.pos[0].coords.longitude);
+                        $.ajax({
+                            type: "GET",
+                            url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
+                            headers: {
+                                "X-Everlive-Filter": JSON.stringify({
+                                    "Location": {
+                                        "$nearSphere": {
+                                            "longitude": appSettings.currentLocation.pos[0].coords.latitude,
+                                            "latitude": appSettings.currentLocation.pos[0].coords.longitude
+                                        },
+                                        "$maxDistanceInKilometers": 0.25
+                                    },
+                                    "UserId": { "$in": app.Users.pullClassMates() }
+                                })
+                            },
+                            success: function (result) {
+                                options.success(result);
+                            },
+                            error: function (result) {
+                                options.error(result);
                             }
-                        }));
-                    }
-                }
+                        });
+                    } else {
+                        options.error();
+                    };
+                },
+                create: function (options) {
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
+                        //dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify(options.data),
+                        success: function (result) {
+                            options.success(result);
+                        },
+                        error: function (result) {
+                            options.error(result);
+                        }
+                    });
+                },
             },
             change: function (e) {
 
@@ -136,10 +184,16 @@ app.Activities = (function () {
             });
         };
 
+        var init = function () {
+            console.log('init');
+            
+        }
+
         return {
             activities: activitiesModel.activities,
             activitySelected: activitySelected,
-            logout: logout
+            logout: logout,
+            init: init
         };
 
     }());

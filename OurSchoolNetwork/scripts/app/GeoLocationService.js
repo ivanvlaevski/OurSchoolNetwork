@@ -15,7 +15,7 @@ app.GeoLocationService = (function () {
             if (appSettings.watchId != null) {
                 navigator.geolocation.clearWatch(appSettings.watchId);
             };
-            var options = { options: 10000, enableHighAccuracy: true };
+            var options = { options: 30000, enableHighAccuracy: true };
             appSettings.watchId = navigator.geolocation.watchPosition(function () {
                 app.GeoLocationService.onSuccess(this,arguments);
             }, function () {
@@ -29,6 +29,7 @@ app.GeoLocationService = (function () {
                 _callBack();
                 _callBack = null;
             }
+            console.log('new location: ' + appSettings.currentLocation.pos[0].coords.latitude + '-' + appSettings.currentLocation.pos[0].coords.longitude);
         },
         
         onError: function (a,error) {

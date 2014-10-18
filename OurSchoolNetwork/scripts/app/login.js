@@ -13,6 +13,7 @@ app.Login = (function () {
 
         var $loginUsername;
         var $loginPassword;
+        var $loginSave;
 
         var isFacebookLogin = app.isKeySet(appSettings.facebook.appId) && app.isKeySet(appSettings.facebook.redirectUri);
         var isGoogleLogin = app.isKeySet(appSettings.google.clientId) && app.isKeySet(appSettings.google.redirectUri);
@@ -28,6 +29,7 @@ app.Login = (function () {
 
             $loginUsername = $('#loginUsername');
             $loginPassword = $('#loginPassword');
+            $loginSave = $('#savePass');
 
           /*  if (!isFacebookLogin) {
                 $('#loginWithFacebook').addClass('disabled');
@@ -53,9 +55,9 @@ app.Login = (function () {
         };
 
         var show = function () {
-            $loginUsername.val('');
-            $loginPassword.val('');
-            
+            $loginUsername.val(app.getStoredValue('username'));
+            $loginPassword.val(app.getStoredValue('password'));
+            if ($loginUsername.val() !== '') $loginSave.attr('checked', 'checked');
         };
 
         // Authenticate to use Backend Services as a particular user
@@ -64,6 +66,13 @@ app.Login = (function () {
             var username = $loginUsername.val();
             var password = $loginPassword.val();
 
+            if ($loginSave.prop('checked')) {
+                app.setStoredValue('username', username);
+                app.setStoredValue('password', password);
+            } else {
+                app.setStoredValue('username', '');
+                app.setStoredValue('password', '');
+            };
             
 
             // Authenticate using the username and password
@@ -77,8 +86,13 @@ app.Login = (function () {
                 return app.Users.load();
             })
             .then(function () {
+                app.mobileApp.showLoading();
                 app.GeoLocationService.startWatch(function () {
-                    app.mobileApp.navigate('views/activitiesView.html');
+                    if (app.Activities) {
+                        console.log('sync');
+                        app.Activities.activities.read();
+                    }
+                    app.mobileApp.navigate('views/activitiesView.html');//activitiesView
                 });
             })
             .then(null,

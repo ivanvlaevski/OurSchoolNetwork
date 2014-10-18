@@ -16,6 +16,7 @@
             <span id="activityDate" class="time-span" data-bind="text: CreatedAtFormatted"></span>
             <span id="activityText" data-bind="text: Text" class="user-share-txt"></span>
             <img id="picture" class="picture" data-bind="attr:{src: PictureUrl()}" width="100%"/>
+            <br /><span>Likes: ${CountLikes()}   Not Likes ${CountNotLikes()}</span>
             <div class="comments-wrp">
                 <ul id="comments-listview"></ul>
             </div>

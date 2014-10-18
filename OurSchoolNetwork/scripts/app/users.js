@@ -37,12 +37,29 @@ app.Users = (function () {
             );
         };
 
+        var pullClassMates = function () {
+            var grades = currentUser.get('data').Grade;
+            if (grades === undefined) return [];
+            var mates = $.grep(usersData, function (e) {
+                if (e.Grade === undefined) return false;
+                var b = false;
+                e.Grade.forEach(function (gradeId) {
+                    b = b || (grades.indexOf(gradeId) >= 0);
+                });
+                return b;
+            });
+            var ids = [];
+            mates.forEach(function (mate) { ids.push(mate.Id); });
+            return ids;
+        };
+
         return {
             load: loadUsers,
             users: function () {
                 return usersData;
             },
-            currentUser: currentUser
+            currentUser: currentUser,
+            pullClassMates: pullClassMates
         };
 
     }());

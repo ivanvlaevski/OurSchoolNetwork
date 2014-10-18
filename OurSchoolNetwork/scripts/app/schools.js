@@ -53,7 +53,7 @@ app.Schools = (function () {
         });
 
         return {
-            activities: activitiesDataSource
+            schools: schoolsDataSource
         };
 
     }());

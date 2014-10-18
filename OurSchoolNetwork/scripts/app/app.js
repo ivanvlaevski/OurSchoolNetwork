@@ -145,6 +145,19 @@ var app = (function (win) {
         return new Date().getFullYear();
     }());
 
+    var getStoredValue = function(name) {
+        if (localStorage.getItem(name) != undefined) {
+            return localStorage.getItem(name);
+        }
+        else {
+            return '';
+        }
+    };
+
+    var setStoredValue = function (name, value) {
+        localStorage.setItem(name, value);
+    }
+
     return {
         showAlert: showAlert,
         showError: showError,
@@ -153,6 +166,8 @@ var app = (function (win) {
         mobileApp: mobileApp,
         helper: AppHelper,
         everlive: el,
-        getYear: getYear
+        getYear: getYear,
+        getStoredValue: getStoredValue,
+        setStoredValue: setStoredValue
     };
 }(window));

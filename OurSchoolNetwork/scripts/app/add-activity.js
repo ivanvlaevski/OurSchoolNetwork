@@ -36,7 +36,11 @@ app.AddActivity = (function () {
                 
                 activity.Text = $newStatus.val();
                 activity.UserId = app.Users.currentUser.get('data').Id;
-                
+                activity.Location = new Everlive.GeoPoint(
+                    appSettings.currentLocation.pos[0].coords.latitude,
+                    appSettings.currentLocation.pos[0].coords.longitude);
+               
+
                 activities.one('sync', function () {
                     app.mobileApp.navigate('#:back');
                 });
