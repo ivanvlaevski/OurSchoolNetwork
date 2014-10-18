@@ -1,27 +1,21 @@
 {
   "ProjectName": "OurSchoolNetwork",
-  "ProjectGuid": "1219c9ff-a9ae-4288-846e-6070d5da5e5b",
+  "ProjectGuid": "bacbe9ef-9ef3-43af-b06b-73a91e5a192f",
   "projectVersion": 1,
   "AppIdentifier": "com.telerik.OurSchoolNetwork",
   "DisplayName": "OurSchoolNetwork",
-  "Author": "Ivan Vlaevski",
-  "Description": "OurSchoolNetwork",
+  "Author": "",
+  "Description": "",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
     "1",
     "2"
   ],
-  "iOSBackgroundMode": [
-    "location"
-  ],
+  "iOSBackgroundMode": [],
   "WP8TileTitle": "",
   "WP8Publisher": "",
-  "WP8Capabilities": [
-    "ID_CAP_ISV_CAMERA",
-    "ID_CAP_LOCATION",
-    "ID_CAP_PUSH_NOTIFICATION"
-  ],
+  "WP8Capabilities": [],
   "WP8Requirements": [],
   "WP8PublisherID": "",
   "WP8ProductID": "",
@@ -30,42 +24,47 @@
   "CorePlugins": [
     "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
-    "org.apache.cordova.media-capture",
     "org.apache.cordova.console",
     "org.apache.cordova.contacts",
     "org.apache.cordova.device",
     "org.apache.cordova.device-motion",
     "org.apache.cordova.device-orientation",
+    "org.apache.cordova.dialogs",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
     "org.apache.cordova.geolocation",
     "org.apache.cordova.globalization",
     "org.apache.cordova.inappbrowser",
-    "org.apache.cordova.keyboard",
     "org.apache.cordova.media",
+    "org.apache.cordova.media-capture",
     "org.apache.cordova.network-information",
-    "org.apache.cordova.dialogs",
     "org.apache.cordova.splashscreen",
-    "org.apache.cordova.vibration",
-    "com.telerik.plugin.eqatecanalytics",
-    "com.telerik.feedback",
-    "com.telerik.mobiletesting"
+    "org.apache.cordova.statusbar",
+    "org.apache.cordova.vibration"
   ],
-  "CordovaPluginVariables": {
-    "com.telerik.mobiletesting": {
-      "IOS_APP_URL": "friends"
-    }
-  },
   "AndroidPermissions": [
-    "android.permission.CAMERA",
     "android.permission.ACCESS_COARSE_LOCATION",
     "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.ACCOUNT_MANAGER",
+    "android.permission.BROADCAST_STICKY",
+    "android.permission.CAMERA",
+    "android.permission.GET_ACCOUNTS",
     "android.permission.INTERNET",
-    "android.permission.WRITE_EXTERNAL_STORAGE",
-    "android.permission.ACCESS_NETWORK_STATE"
+    "android.permission.MANAGE_ACCOUNTS",
+    "android.permission.MODIFY_AUDIO_SETTINGS",
+    "android.permission.READ_CONTACTS",
+    "android.permission.READ_PHONE_STATE",
+    "android.permission.RECEIVE_SMS",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.VIBRATE",
+    "android.permission.WRITE_CONTACTS",
+    "android.permission.WRITE_EXTERNAL_STORAGE"
   ],
   "DeviceOrientations": [
-    "Portrait"
+    "Portrait",
+    "Landscape"
   ],
   "AndroidHardwareAcceleration": "false",
   "iOSStatusBarStyle": "Default",
