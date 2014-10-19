@@ -1,0 +1,65 @@
+<div data-role="view" id="view-all-books" data-layout="default" class="books-view" data-model="app.Books" data-init="app.Books.init">    
+        <div data-role="header">
+            <div data-role="navbar">
+                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
+                Books
+                <a class="nav-button nav-button-add hide-text" data-align="right" data-role="button" href="views/addBookView.html">Add</a>
+            </div>
+        </div>
+
+    
+
+    
+        <ul id="books-listview" data-style="inset" data-role="listview" data-template="bookTemplate"
+            data-bind="source: Books"></ul>
+        <p id="no-books-span" hidden="hidden" class="no-items-msg">
+            <b>You have no posts yet.</b><br /><br />Tap on the plus sign and share what's on your mind.
+        </p>
+    
+   
+</div>
+
+<!-- books ListView Template -->
+<script type="text/x-kendo-template" id="bookTemplate">
+    <div data-role="touch" data-bind="events: { tap: bookSelected }" class="cf ${CountDeleteRequests()}">
+        <div class="user-avatar">
+            <img data-bind="attr:{src: User().PictureUrl}" alt="styles/images/avatar.png" />
+        </div>
+        <div class="book-content">
+            <h2 class="person-name">${User().DisplayName}</h2>
+            <span class="time-span">${CreatedAtFormatted()}</span>
+            <a class="user-share-txt">${Text}</a>
+            
+            <img class="picture" data-bind="attr:{src: getPictureUrl(), style: getPictureView()}" width="100%"  />
+        </div>
+    </div>
+</script>
+
+<div data-role="drawer" id="my-drawer" style="width: 250px">
+    <ul data-role="listview" data-type="group">
+        <li>
+            Menu
+            <ul>
+                <li data-icon="home">
+                    <a href="views/activitiesView.html">News</a>
+                </li>
+                <li data-icon="contacts">
+                    <a href="views/booksView.html">Class</a>
+                </li>
+                <li data-icon="recents">
+                    <a href="views/schedules.html">Schedule</a>
+                </li>
+                <li data-icon="bookmarks">
+                    <a href="views/booksView.html">Books</a>
+                </li>
+                <li data-icon="settings">
+                    <a href="views/settingsView.html">Settings</a>
+                </li>
+                <li data-icon="home">
+                    <a data-click="app.books.logout">Log out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
