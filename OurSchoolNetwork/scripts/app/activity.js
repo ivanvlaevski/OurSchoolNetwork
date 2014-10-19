@@ -18,7 +18,7 @@ app.Activity = (function () {
         
         var init = function () {
             $commentsContainer = $('#comments-listview');
-            $activityPicture = $('#picture');
+            //$activityPicture = $('#picture');
         };
         
         var show = function (e) {
@@ -31,7 +31,7 @@ app.Activity = (function () {
             activityUid = e.view.params.uid;
             // Get current activity (based on item uid) from Activities model
             activity = app.Activities.activities.getByUid(activityUid);
-            $activityPicture[0].style.display = activity.Picture ? 'block' : 'none';
+           // $activityPicture[0].style.display = activity.Picture ? 'block' : 'none';
             
             app.Comments.comments.filter({
                 field: 'ActivityId',

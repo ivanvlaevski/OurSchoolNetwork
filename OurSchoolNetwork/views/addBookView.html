@@ -1,0 +1,20 @@
+<div data-role="view" id="share" data-layout="default" data-transition="overlay:down" class="add-activity-view"
+     data-init="app.AddBook.init" data-show="app.AddBook.show" data-model="app.AddBook">
+    <div data-role="header">
+        <div data-role="navbar">
+
+            <a class="nav-button nav-button-cancel" data-align="left" data-role="backbutton">Cancel</a>
+            <a class="nav-button nav-button-post" data-align="right" data-role="button" data-bind="click: saveBook">Save</a>
+        </div>
+    </div>
+    <div id="enterStatus" class="share-form-wrp" data-role="listview" data-style="inset">
+        
+        <h2 class="person-name" data-bind="text: me.get('data').DisplayName">Me</h2>
+        <div class="user-share">
+            <textarea id="newStatus" placeholder="What's on your mind?" required validationmessage="Comment text is required!"></textarea>
+        </div>
+        <ul id="images"></ul>
+        <button data-role="button" data-align="right" data-bind="click: addImage">Add Image</button>
+
+    </div>
+</div>

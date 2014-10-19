@@ -26,6 +26,8 @@
     <Content Include="cordova.ios.js" />
     <Content Include="cordova.wp8.js" />
     <Content Include="index.html" />
+    <Content Include="scripts\app\add-book.js" />
+    <Content Include="scripts\app\books.js" />
     <Content Include="scripts\app\activities.js" />
     <Content Include="scripts\app\activity.js" />
     <Content Include="scripts\app\add-activity.js" />
@@ -38,6 +40,7 @@
     <Content Include="scripts\app\login.js" />
     <Content Include="scripts\app\schools.js" />
     <Content Include="scripts\app\settings.js" />
+    <Content Include="scripts\app\userSettings.js" />
     <Content Include="scripts\app\signup.js" />
     <Content Include="scripts\app\users.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
@@ -61,12 +64,15 @@
     <Content Include="styles\images\logo-telerik_devcloud%402x.png" />
     <Content Include="styles\images\logo-telerik_devcloud.png" />
     <Content Include="styles\main.css" />
+    <Content Include="views\addBookView.html" />
+    <Content Include="views\booksView.html" />
     <Content Include="views\activitiesView.html" />
     <Content Include="views\activityView.html" />
     <Content Include="views\addActivityView.html" />
     <Content Include="views\addCommentView.html" />
     <Content Include="views\mainView.html" />
     <Content Include="views\noApiKey.html" />
+    <Content Include="views\settingsView.html" />
     <Content Include="views\signupView.html" />
     <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
     <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />

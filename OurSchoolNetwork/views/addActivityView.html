@@ -2,7 +2,7 @@
     data-init="app.AddActivity.init" data-show="app.AddActivity.show" data-model="app.AddActivity">
     <div data-role="header">
         <div data-role="navbar">
-            Activity
+            
             <a class="nav-button nav-button-cancel" data-align="left" data-role="backbutton">Cancel</a>
             <a class="nav-button nav-button-post" data-align="right" data-role="button" data-bind="click: saveActivity">Post</a>
         </div>
@@ -15,5 +15,8 @@
         <div class="user-share">
             <textarea id="newStatus" placeholder="What's on your mind?" required validationMessage="Comment text is required!"></textarea>
         </div>
+        <ul id="images"></ul>
+        <button data-role="button" data-align="right" data-bind="click: addImage">Add Image</button>
+        
     </div>
 </div>

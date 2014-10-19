@@ -1,16 +1,16 @@
 /**
- * Activities view model
+ * Books view model
  */
 
 var app = app || {};
 
-app.Activities = (function () {
+app.Books = (function () {
     'use strict'
 
-    // Activities model
-    var activitiesModel = (function () {
+    // Books model
+    var BooksModel = (function () {
 
-        var activityModel = {
+        var BookModel = {
 
             id: 'Id',
             fields: {
@@ -101,12 +101,12 @@ app.Activities = (function () {
             }
         };
 
-        // Activities data source. The Backend Services dialect of the Kendo UI DataSource component
+        // Books data source. The Backend Services dialect of the Kendo UI DataSource component
         // supports filtering, sorting, paging, and CRUD operations.
-        var activitiesDataSource = new kendo.data.DataSource({
+        var BooksDataSource = new kendo.data.DataSource({
             type: 'everlive',
             schema: {
-                model: activityModel
+                model: BookModel
             },
             transport: {
                 read: function (options) {
@@ -114,7 +114,7 @@ app.Activities = (function () {
                         console.log('use location >> ' + appSettings.currentLocation.pos[0].coords.latitude + '-' + appSettings.currentLocation.pos[0].coords.longitude);
                         $.ajax({
                             type: "GET",
-                            url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
+                            url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Books',
                             headers: {
                                 "X-Everlive-Filter": JSON.stringify({
                                     "Location": {
@@ -141,7 +141,7 @@ app.Activities = (function () {
                 create: function (options) {
                     $.ajax({
                         type: "POST",
-                        url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Activities',
+                        url: 'http://api.everlive.com/v1/' + appSettings.everlive.apiKey + '/Books',
                         //dataType: "json",
                         contentType: "application/json",
                         data: JSON.stringify(options.data),
@@ -157,27 +157,27 @@ app.Activities = (function () {
             change: function (e) {
 
                 if (e.items && e.items.length > 0) {
-                    $('#no-activities-span').hide();
+                    $('#no-Books-span').hide();
                 } else {
-                    $('#no-activities-span').show();
+                    $('#no-Books-span').show();
                 }
             },
             sort: { field: 'CreatedAt', dir: 'desc' }
         });
 
         return {
-            activities: activitiesDataSource
+            Books: BooksDataSource
         };
 
     }());
 
-    // Activities view model
-    var activitiesViewModel = (function () {
+    // Books view model
+    var BooksViewModel = (function () {
 
-        // Navigate to activityView When some activity is selected
-        var activitySelected = function (e) {
+        // Navigate to BookView When some Book is selected
+        var BookSelected = function (e) {
 
-            app.mobileApp.navigate('views/activityView.html?uid=' + e.data.uid);
+            app.mobileApp.navigate('views/BookView.html?uid=' + e.data.uid);
         };
 
         // Navigate to app home
@@ -202,14 +202,14 @@ app.Activities = (function () {
         }
 
         return {
-            activities: activitiesModel.activities,
-            activitySelected: activitySelected,
+            Books: BooksModel.Books,
+            BookSelected: BookSelected,
             logout: logout,
             init: init
         };
 
     }());
 
-    return activitiesViewModel;
+    return BooksViewModel;
 
 }());

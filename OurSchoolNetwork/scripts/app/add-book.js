@@ -4,10 +4,10 @@
 
 var app = app || {};
 
-app.AddActivity = (function () {
+app.AddBook = (function () {
     'use strict'
 
-    var addActivityViewModel = (function () {
+    var addBookViewModel = (function () {
         
         var $newStatus;
         var validator;
@@ -27,27 +27,27 @@ app.AddActivity = (function () {
             validator.hideMessages();
         };
         
-        var saveActivity = function () {
+        var saveBook = function () {
             
             // Validating of the required fields
             if (validator.validate()) {
                 
                 // Adding new activity to Activities model
-                var activities = app.Activities.activities;
-                var activity = activities.add();
+                var Books = app.Books.Books;
+                var Book = Books.add();
                 
-                activity.Text = $newStatus.val();
-                activity.UserId = app.Users.currentUser.get('data').Id;
-                activity.Location = new Everlive.GeoPoint(
+                Book.Text = $newStatus.val();
+                Book.UserId = app.Users.currentUser.get('data').Id;
+                Book.Location = new Everlive.GeoPoint(
                     appSettings.currentLocation.pos[0].coords.latitude,
                     appSettings.currentLocation.pos[0].coords.longitude);
-                activity.PictureURL = PhothoName;
+                Book.PictureURL = PhothoName;
 
-                activities.one('sync', function () {
+                Books.one('sync', function () {
                     app.mobileApp.navigate('#:back');
                 });
                 
-                activities.sync();
+                Books.sync();
             }
         };
         
@@ -90,12 +90,12 @@ app.AddActivity = (function () {
             init: init,
             show: show,
             me: app.Users.currentUser,
-            saveActivity: saveActivity,
+            saveBook: saveBook,
             addImage: addImage
         };
         
     }());
     
-    return addActivityViewModel;
+    return addBookViewModel;
     
 }());

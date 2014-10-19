@@ -1,26 +1,22 @@
 <div data-role="view" id="view-all-activities" data-layout="default" class="activities-view" data-model="app.Activities" data-init="app.Activities.init">    
         <div data-role="header">
             <div data-role="navbar">
-                Activities
-                <a class="nav-button nav-button-back hide-text" data-align="left" data-role="backbutton" data-click="app.Activities.logout">Log out</a>
+                <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
+                News
                 <a class="nav-button nav-button-add hide-text" data-align="right" data-role="button" href="views/addActivityView.html">Add</a>
             </div>
         </div>
+
+    
+
+    
         <ul id="activities-listview" data-style="inset" data-role="listview" data-template="activityTemplate"
             data-bind="source: activities"></ul>
         <p id="no-activities-span" hidden="hidden" class="no-items-msg">
             <b>You have no posts yet.</b><br /><br />Tap on the plus sign and share what's on your mind.
         </p>
     
-    <div data-role="footer">
-        <div data-role="tabstrip" data-selected-index="1">
-            <a href="views/activitiesView.html" data-icon="home">News</a>
-            <a href="views/contacts.html" data-icon="contacts">Class</a>
-            <a href="views/contacts.html" data-icon="recents">Schedule</a>
-            <a href="views/contacts.html" data-icon="bookmarks">Books</a>
-            <a href="views/settings.html" data-icon="settings">Settings</a>
-        </div>
-    </div>
+   
 </div>
 
 <!-- Activities ListView Template -->
@@ -34,6 +30,36 @@
             <span class="time-span">${CreatedAtFormatted()}</span>
             <a class="user-share-txt">${Text}</a>
             <br/><span>Likes: ${CountLikes()}   Not Likes ${CountNotLikes()}</span>
+            <img class="picture" data-bind="attr:{src: getPictureUrl(), style: getPictureView()}" width="100%"  />
         </div>
     </div>
 </script>
+
+<div data-role="drawer" id="my-drawer" style="width: 250px">
+    <ul data-role="listview" data-type="group">
+        <li>
+            Menu
+            <ul>
+                <li data-icon="home">
+                    <a href="views/activitiesView.html">News</a>
+                </li>
+                <li data-icon="contacts">
+                    <a href="views/booksView.html">Class</a>
+                </li>
+                <li data-icon="recents">
+                    <a href="views/schedules.html">Schedule</a>
+                </li>
+                <li data-icon="bookmarks">
+                    <a href="views/booksView.html">Books</a>
+                </li>
+                <li data-icon="settings">
+                    <a href="views/settingsView.html">Settings</a>
+                </li>
+                <li data-icon="home">
+                    <a data-click="app.Activities.logout">Log out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>

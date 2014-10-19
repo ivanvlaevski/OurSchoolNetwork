@@ -1,0 +1,70 @@
+<div data-role="view" id="settings" data-layout="default" class="settings-view" data-model="app.UserSettings" data-init="app.UserSettings.init" data-show="app.UserSettings.show" data-hide="app.UserSettings.hide">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a data-role="button" data-rel="drawer" href="#my-drawer" data-icon="drawer-button" data-align="left"></a>
+            Settings
+   
+        </div>
+    </div>
+    <form id="SettingsForm">
+        <ul id="settings-form" data-role="listview" data-style="inset">
+            <li>
+                <input type="text" id="signupName" data-bind="value: DisplayName" placeholder="Name" required />
+            </li>
+            <li>
+                <input type="email" id="signupEmail" data-bind="value: Email" placeholder="Email" />
+            </li>
+           <!-- <li>
+                <input type="password" id="signupPassword" data-bind="value: Password" placeholder="Password" required />
+            </li>-->
+            <li>
+                <input type="date" id="signupBirthDatePicker" data-bind="value: BirthDate" />
+            </li>
+            <li class="select-wrp">
+                <select id="signupGenderPicker" data-bind="value: Gender" onchange="app.Signup.onSelectChange(this)">
+                    <option value="0" selected>Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </li>
+            <li class="txtarea-wrp">
+                <textarea id="signupInfo" data-bind="value: About" placeholder="About">About You</textarea>
+            </li>
+        </ul>
+    </form>
+    <div id="signupBtnWrp" class="signup-btn-wrp disabled">
+        <a class="btn btn-signup" data-role="button" data-bind="click: update">Save</a>
+    </div>
+
+
+    
+</div>
+
+<div data-role="drawer" id="my-drawer" style="width: 250px">
+    <ul data-role="listview" data-type="group">
+        <li>
+            Menu
+            <ul>
+                <li data-icon="home">
+                    <a href="views/activitiesView.html">News</a>
+                </li>
+                <li data-icon="contacts">
+                    <a href="views/contacts.html">Class</a>
+                </li>
+                <li data-icon="recents">
+                    <a href="views/schedules.html">Schedule</a>
+                </li>
+                <li data-icon="bookmarks">
+                    <a href="views/booksView.html">Books</a>
+                </li>
+                <li data-icon="settings">
+                    <a href="views/settingsView.html">Settings</a>
+                </li>
+                <li data-icon="home">
+                    <a data-click="app.Activities.logout">Log out</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
